@@ -15,6 +15,13 @@ def index():
 def dashboard():
     return render_template("dashboard.html")
 
+@bp.route("/profile")
+@login_required
+def profile():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    return render_template("profile.html", user=user)
+
 @bp.route("/activities")
 @login_required
 def activities():
